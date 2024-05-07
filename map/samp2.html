@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>India AQI Levels (Sample)</title>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+</head>
+<body>
+  <center><main id="main">
+    <h1>Air Quality Index (AQI) in India (Sample)</h1>
+    <div id="visualization"></div>
+  </main></center>
+
+  <script>
+    google.load('visualization', '1', {packages: ['geochart']});
+    google.setOnLoadCallback(drawVisualization);
+
+    function drawVisualization() {
+      // Replace with AQI data for a representative set of states
+      var data = google.visualization.arrayToDataTable([
+        ['State', 'State Name', 'AQI PM2.5'],
+        ['Andhra Pradesh', 'Andhra Pradesh', 24],
+        ['Arunachal Pradesh', 'Arunachal Pradesh', 39],
+        ['Assam', 'Assam', 31],
+        ['Bihar', 'Bihar', 41],
+        ['Chandigarh', 'Chandigarh', 46],
+        ['Chhattisgarh', 'Chhattisgarh', 16],
+        ['Dadra And Nagar Haveli', 'Dadra And Nagar Haveli', 28],
+        ['Daman And Diu', 'Daman And Diu', 41],
+        ['Delhi', 'Delhi', 112],
+        ['Goa', 'Goa', 40],
+        ['Gujarat', 'Gujarat', 41],
+        ['Haryana', 'Haryana', 85],
+        ['Himachal Pradesh', 'Himachal Pradesh', 13],
+        ['Jammu And Kashmir', 'Jammu And Kashmir', 9],
+        ['Jharkhand', 'Jharkhand', 22],
+        ['Karnataka', 'Karnataka', 34],
+        ['Kerala', 'Kerala', 33],
+        ['Madhya Pradesh', 'Madhya Pradesh', 29],
+        ['Maharashtra', 'Maharashtra', 30],
+        ['Manipur', 'Manipur', 20],
+        ['Meghalaya', 'Meghalaya', 63],
+        ['Mizoram', 'Mizoram', 9],
+        ['Nagaland', 'Nagaland', 40],
+        ['Odisha', 'Odisha', 43], // Add Odisha with its AQI value
+        ['Puducherry', 'Puducherry', 4],
+        ['Punjab', 'Punjab', 33],
+        ['Rajasthan', 'Rajasthan', 52],
+        ['Sikkim', 'Sikkim', 19],
+        ['Tamil Nadu', 'Tamil Nadu', 14],
+        ['Telangana', 'Telangana', 27],
+        ['Tripura', 'Tripura', 37],
+        ['Uttar Pradesh', 'Uttar Pradesh', 47],
+        ['Uttarakhand', 'Uttarakhand', 34],
+        ['West Bengal', 'West Bengal', 64]
+      ]);
+
+      var stateUrls = {
+        'Andhra Pradesh': 'Andhra-pradesh.html',
+        'Arunachal Pradesh': 'Arunanchal-pradesh.html',
+        'Assam': 'Assam.html',
+        'Bihar': 'bihar.html',
+        'Chandigarh': 'chandigarh.html',
+        'Chhattisgarh': 'chhattisgarh.html',
+        'Delhi': 'delhi.html',
+        'Goa': 'goa.html',
+        'Gujarat': 'gujarat.html',
+        'Haryana': 'haryana.html',
+        'Himachal Pradesh': 'himachal-pradesh.html',
+        'Jammu And Kashmir': 'jk.html',
+        'Jharkhand': 'jharkhand.html',
+        'Karnataka': 'karnataka.html',
+        'Kerala': 'kerala.html',
+        'Madhya Pradesh': 'mp.html',
+        'Maharashtra': 'maharashtra.html',
+        'Manipur': 'manipur.html',
+        'Meghalaya': 'meghalaya.html',
+        'Mizoram': 'mizoram.html',
+        'Nagaland': 'nagaland.html',
+        'Odisha': 'odisha.html', // Add Odisha with its URL
+        'Puducherry': 'puducherry.html',
+        'Punjab': 'punjab.html',
+        'Rajasthan': 'rajasthan.html',
+        'Sikkim': 'sikkim.html',
+        'Tamil Nadu': 'tamil-nadu.html',
+        'Telangana': 'telangana.html',
+        'Tripura': 'tripura.html',
+        'Uttar Pradesh': 'up.html',
+        'Uttarakhand': 'uttarakhand.html',
+        'West Bengal': 'westbengal.html'
+      };
+
+      var options = {
+        region: 'IN',
+        domain: 'IN',
+        displayMode: 'regions',
+        colorAxis: {colors: ['#FF9800', '#FFC107', '#FFEB3B']},
+        resolution: 'provinces',
+        backgroundColor: '#81d4fa',
+        defaultColor: '#000000',
+        width: 940,
+        height: 680
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('visualization'));
+
+      google.visualization.events.addListener(chart, 'select', function() {
+        var selection = chart.getSelection();
+        if (selection.length === 1) {
+          var selectedState = data.getValue(selection[0].row, 0);
+          var url = stateUrls[selectedState];
+          if (url) {
+            window.location.href = url;
+          } else {
+            console.log('No URL defined for ' + selectedState);
+          }
+        }
+      });
+
+      chart.draw(data, options);
+    }
+  </script>
+</body>
+</html>
