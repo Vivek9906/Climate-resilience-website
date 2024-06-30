@@ -1,1 +1,1 @@
-:Link:[preview](https://vivek9906.github.io/Climate-resilience-website/)
+:link:[preview](https://vivek9906.github.io/Climate-resilience-website/)
