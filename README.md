@@ -1,1 +1,1 @@
-'''[preview](https://vivek9906.github.io/Climate-resilience-website/)
+'''[preview]'''(https://vivek9906.github.io/Climate-resilience-website/)
